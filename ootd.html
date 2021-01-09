@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="ootd.css"/>
+<link rel="stylesheet" type="text/css" href="store.css"/>
+<head>
+<body background="gallery/wallpaper.jpg">
+  <title>OOTD</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+h2 {
+color: White;
+font-size: 30px;
+}
+p {
+font-size: 25px;
+}
+
+  </style>
+</head>
+<body>
+
+<div class="jumbotron" style="background-color: white">
+  <div class="container text-center">
+     <img src="gallery/logo1.png">       
+  </div>
+</div>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="sizechart.html">Size Chart</a></li>
+        <li><a href="ootd.html">OOTD</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="youraccount.html"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+        <li><a href="checkoutform.html"><span class="glyphicon glyphicon-shopping-cart"></span> Payment</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<table id="table2" align="center">
+<tr>
+<td align="center" width="500"><canvas id="canvas" width="200" height="200">
+</canvas>
+
+<script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var radius = canvas.height / 2;
+ctx.translate(radius, radius);
+radius = radius * 0.90
+setInterval(drawClock, 1000);
+
+function drawClock() {
+  drawFace(ctx, radius);
+  drawNumbers(ctx, radius);
+  drawTime(ctx, radius);
+}
+
+function drawFace(ctx, radius) {
+  var grad;
+  ctx.beginPath();
+  ctx.arc(0, 0, radius, 0, 2*Math.PI);
+  ctx.fillStyle = 'white';
+  ctx.fill();
+  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+  grad.addColorStop(0, '#333');
+  grad.addColorStop(0.5, '#f0f4a3');
+  grad.addColorStop(1, '#333');
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = radius*0.1;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+  ctx.fillStyle = '#333';
+  ctx.fill();
+}
+
+function drawNumbers(ctx, radius) {
+  var ang;
+  var num;
+  ctx.font = radius*0.15 + "px arial";
+  ctx.textBaseline="middle";
+  ctx.textAlign="center";
+  for(num = 1; num < 13; num++){
+    ang = num * Math.PI / 6;
+    ctx.rotate(ang);
+    ctx.translate(0, -radius*0.85);
+    ctx.rotate(-ang);
+    ctx.fillText(num.toString(), 0, 0);
+    ctx.rotate(ang);
+    ctx.translate(0, radius*0.85);
+    ctx.rotate(-ang);
+  }
+}
+
+function drawTime(ctx, radius){
+    var now = new Date();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    //hour
+    hour=hour%12;
+    hour=(hour*Math.PI/6)+
+    (minute*Math.PI/(6*60))+
+    (second*Math.PI/(360*60));
+    drawHand(ctx, hour, radius*0.5, radius*0.07);
+    //minute
+    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+    drawHand(ctx, minute, radius*0.8, radius*0.07);
+    // second
+    second=(second*Math.PI/30);
+    drawHand(ctx, second, radius*0.9, radius*0.02);
+}
+
+function drawHand(ctx, pos, length, width) {
+    ctx.beginPath();
+    ctx.lineWidth = width;
+    ctx.lineCap = "round";
+    ctx.moveTo(0,0);
+    ctx.rotate(pos);
+    ctx.lineTo(0, -length);
+    ctx.stroke();
+    ctx.rotate(-pos);
+}
+</script>
+</td>
+<td align="center" height="300"><video width="500" height="240" controls><source src="video/intro.MP4"autoplay="false" table=fixed></embed></td>
+</td>
+</table>
+<br>
+<br>
+<p align="center"><img src="gallery/ootd.PNG"></p>
+<table>
+<tr align="center">
+<div class="gallery" align="center">
+<td><a href="gallery/ku.PNG"><img src="gallery/ku.PNG" width="320" height="320"></a></td>
+<td></td>
+<td><a href="gallery/syila.PNG"><img src="gallery/syila.PNG" width="320" height="320"></a></td>
+<td></td>
+<td><a href="gallery/aidila.PNG"><img src="gallery/aidila.PNG" width="320" height="320"></a></td>
+<td></td>
+<td><a href="gallery/syila1.PNG"><img src="gallery/syila1.PNG" width="320" height="320"></a></td>
+<td></td>
+</tr>
+<tr>
+<td align="center" height="10"></td>
+</tr>
+<br>
+</table>
+<table>
+<tr align="center">
+<td><a href="gallery/syila2.PNG"><img src="gallery/syila2.PNG" width="320" height="320"></a></td>
+<td></td>
+<td><a href="gallery/aidila1.PNG"><img src="gallery/aidila1.PNG" width="320" height="320"></a></td>
+<td></td>
+<td><a href="gallery/ku1.PNG"><img src="gallery/ku1.PNG" width="320" height="320"></a></td>
+<td></td>
+<td><a href="gallery/syila3.PNG"><img src="gallery/syila3.PNG" width="320" height="320"></a></td>
+<td></td>
+</tr>
+<tr>
+<td align="center" height="10"></td>
+</tr>
+<br>
+</table>
+<table>
+<tr align="center">
+<td><a href="gallery/aidila2.PNG"><img src="gallery/aidila2.PNG" width="320" height="320"></a></td>
+<td></td>
+<td><a href="gallery/ku2.PNG"><img src="gallery/ku2.PNG" width="320" height="320"></a></td>
+<td></td>
+<td><a href="gallery/syila4.PNG"><img src="gallery/syila4.PNG" width="320" height="320"></a></td>
+<td></td>
+<td><a href="gallery/syila5.PNG"><img src="gallery/syila5.PNG" width="320" height="320"></a></td>
+<td></td>
+</tr>
+<tr>
+<td align="center" height="10"></td>
+</tr>
+<br>
+</table>
+
+<footer class="container-fluid text-center">
+<table class="a" align="center" width="100%" padding="50%">
+<tr>
+<td align="center"><div class="footer-column">
+</p><b>Find Us At</b></p> 
+<button class="button button1"><a href="https://www.facebook.com/Skool-Bundle-105741901478098/?modal=admin_todo_tour&notif_id=1610008595964839&notif_t=page_invite&ref=notif" target="_blank"><img src="gallery/fb7.jpg"></a> </button>
+<button class="button button2"><a href="https://www.instagram.com/skoolbundle/" target="_blank"><img src="gallery/insta.jpg"></a></button></div></td>
+
+<td align="center"><div class="footer-column">
+<b>Term and Conditions/ Return and Refund Condition</b>
+</p><a href=file:///C:/Users/nur%20aidila/Desktop/bundle%20website/gallery/TERMS%20AND%20CONDITION.pdf target="_blank">Click Here To View TC&P</a></div></td>
+
+<td align="center"><div class="footer-column">
+<b>Help & Information</b>
+</p>Got Question? Contact Us</p> 
+</p>04- 6493835</p>
+</p><a href=https://docs.google.com/forms/d/e/1FAIpQLSfvG0F0yOcVepjOM-8OoWac5lgkvB6PKsIO5ZU2OciWL_TFQA/viewform?usp=pp_url target="_blank">Customer Feedback</a></p></div></td>
+</tr>
+</table>  
+</footer>
+<embed src="audio/song.mp3" autoplay="true" hidden="true"></embed>
+</body>
+</html>

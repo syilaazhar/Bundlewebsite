@@ -1,0 +1,16 @@
+.footer-column {
+  width: 20%;
+  float: left;
+}
+.footer-column {
+  width: 20%;
+  align: center;
+}
+.footer-column {
+  width: 20%;
+  float: right;
+}
+table.a{ 
+   table-layout: fixed;
+   width: 100%;
+}

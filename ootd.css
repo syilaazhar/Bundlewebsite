@@ -1,0 +1,36 @@
+body {
+background-repeat: no-repeat;
+background-size: 100% 100%;
+font-family: Verdana, sans-serif;
+}
+
+table {
+font-family: times new roman;
+border-collapse: separate;
+border-spacing: 0px;
+width: 100%;
+}
+
+#table2 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  width: 100%;
+}
+
+table.b {
+  table-layout: fixed;
+  width: 50%; 
+  font-size: 20px; 
+  font-color: black;
+}
+
+table.c {
+  font-size: 50px; 
+}
+
+table.d {
+  table-layout: fixed;
+  width: 50%; 
+  font-size: 20px; 
+  font-color: black;
+}
